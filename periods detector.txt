@@ -1,0 +1,31 @@
+import datetime
+
+def calculate_period_cycle():
+    cycle_length = int(input("Enter the average length of your menstrual cycle in days: "))
+    last_period = datetime.date.today() - datetime.timedelta(days=cycle_length)
+    next_period = last_period + datetime.timedelta(days=cycle_length)
+    
+    print("Your last period started on:", last_period.strftime("%Y-%m-%d"))
+    print("Your next period is expected on:", next_period.strftime("%Y-%m-%d"))
+
+calculate_period_cycle()
+//////////////////////////////////////////////////////
+import pandas as pd
+
+def calculate_period_cycle():
+    last_period_date = input("Enter the date of your last period (YYYY-MM-DD): ")
+    cycle_length = int(input("Enter the average length of your menstrual cycle in days: "))
+
+    # Convert last period date to a pandas Timestamp object
+    last_period = pd.to_datetime(last_period_date)
+
+    # Calculate next period start date based on last period date and cycle length
+    next_period = last_period + pd.DateOffset(days=cycle_length)
+
+    # Calculate previous period start date
+    previous_period = next_period - pd.DateOffset(days=cycle_length)
+
+    print("Your previous period started on:", previous_period.strftime("%Y-%m-%d"))
+    print("Your next period is expected on:", next_period.strftime("%Y-%m-%d"))
+
+calculate_period_cycle()

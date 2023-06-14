@@ -1,0 +1,78 @@
+// Define the menu with items and prices
+const menu = {
+  '1': { name: 'Matooke', price: 15000 },
+  '2': { name: 'Rolex', price: 5000 },
+  '3': { name: 'Posho', price: 10000 },
+  '4': { name: 'G-nuts sauce', price: 8000 },
+  '5': { name: 'Kawunga', price: 7000 },
+  '6': { name: 'Millet bread', price: 6000 },
+  '7': { name: 'Kikomando', price: 4000 },
+};
+
+// Define the drinks menu with items and prices
+const drinksMenu = {
+  '1': { name: 'Soda', price: 2000 },
+  '2': { name: 'Water', price: 1000 },
+  '3': { name: 'Juice', price: 3000 },
+};
+
+// Function to calculate the total amount to be paid
+function calculateTotalAmount(orders) {
+  let totalAmount = 0;
+  for (const order of orders) {
+    totalAmount += order.price;
+  }
+  return totalAmount;
+}
+
+// Function to print a receipt for the order
+function printReceipt(tableNumber, orders, totalAmount) {
+  console.log('--------- Receipt ---------');
+  console.log('Table Number:', tableNumber);
+  console.log('Orders:');
+  for (const order of orders) {
+    console.log('-', order.name, ':', order.price);
+  }
+  console.log('Total Amount:', totalAmount);
+  console.log('---------------------------');
+}
+
+// Function to handle the client's order
+function placeOrder() {
+  // Get client's name
+  const clientName = prompt('Enter your name:');
+
+  // Get table number
+  const tableNumber = parseInt(prompt('Enter your table number:'));
+
+  // Get the order
+  const order = prompt('Enter the item number you want to order (e.g., 1, 2, 3), separate multiple items with commas:');
+  const items = order.split(',');
+
+  const orders = [];
+
+  // Process each ordered item
+  for (const item of items) {
+    // Check if the item is from the food menu
+    if (menu[item]) {
+      orders.push(menu[item]);
+    }
+    // Check if the item is from the drinks menu
+    else if (drinksMenu[item]) {
+      orders.push(drinksMenu[item]);
+    }
+    // Item is invalid
+    else {
+      console.log('Invalid item:', item);
+    }
+  }
+
+  // Calculate the total amount
+  const totalAmount = calculateTotalAmount(orders);
+
+  // Print the receipt
+  printReceipt(tableNumber, orders, totalAmount);
+}
+
+// Place an order
+placeOrder();

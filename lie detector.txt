@@ -1,0 +1,14 @@
+def lie_detector():
+    print("Welcome to the Lie Detector Test!")
+    print("Please answer the following questions with either 'yes' or 'no'.")
+    
+    question1 = input("Did you eat the last cookie? ")
+    question2 = input("Did you finish your homework? ")
+    question3 = input("Did you break the vase? ")
+    
+    if question1.lower() == "no" and question2.lower() == "yes" and question3.lower() == "no":
+        print("Congratulations! According to our lie detector test, you are telling the truth.")
+    else:
+        print("Our lie detector test indicates that you might be lying.")
+    
+lie_detector()
